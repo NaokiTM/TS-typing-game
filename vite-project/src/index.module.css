@@ -1,0 +1,21 @@
+:root {
+    font-family: monospace;
+    font-size: 16;
+    font-weight: 500;
+}
+
+.test {
+    background-color: blanchedalmond;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+}
+
+.options {
+    background-color: rgb(44, 44, 44);
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+}
