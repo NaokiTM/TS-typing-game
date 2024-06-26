@@ -45,9 +45,9 @@ const Test = () => {
   
 
   return (
-    <div className='bg-black'>
+    <div className='bg-green-300 text-green-700 flex flex-col items-center justify-center h-[70vh] space-y-4 font-mono text-xl '>
       <div>{testString}</div>
-      <button onClick = {generateNewTest} className='bg-black'>refresh the test</button>
+      <button onClick = {generateNewTest} className=''>refresh the test</button>
     </div> 
   )
 }

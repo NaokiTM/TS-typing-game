@@ -6,7 +6,7 @@ import "../index.css"
 function App() {
   return (
     <>
-      <div className='bg-black'>
+      <div className=''>
         <Test />
         <Title />
         <Options />
