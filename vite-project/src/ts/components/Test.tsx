@@ -7,7 +7,6 @@ const Test = () => {
   const selectedWordCount = 20;
 
 
-
   useEffect(() => {
     fetch('../../../words.txt')
     .then((response) => 
@@ -45,12 +44,10 @@ const Test = () => {
   }
   
 
-
-
   return (
-    <div>
+    <div className='bg-black'>
       <div>{testString}</div>
-      <button onClick = {generateNewTest}>refresh the test</button>
+      <button onClick = {generateNewTest} className='bg-black'>refresh the test</button>
     </div> 
   )
 }
