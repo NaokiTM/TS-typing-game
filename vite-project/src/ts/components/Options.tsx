@@ -1,9 +1,5 @@
-import React from 'react'
-
-const Options = () => {
+export default function Options() {
   return (
     <div>Options</div>
   )
 }
-
-export default Options
