@@ -6,9 +6,9 @@ import "../index.css"
 function App() {
   return (
     <>
-      <div className=''>
-        <Test />
+      <div className='font-mono text-2xl leading-loose'>
         <Title />
+        <Test />
         <Options />
       </div>
     </>
