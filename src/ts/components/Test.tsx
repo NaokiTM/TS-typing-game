@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import '../../index.css'
 
 const Test = () => {
@@ -10,6 +10,7 @@ const Test = () => {
   const [typeareaHovered, setTypeareaHovered] = useState(true);
   let [caretPosition, setCaretPosition] = useState(0)
   const [gotCorrect, setGotCorrect] = useState<boolean[]>([])
+
 
   //generating a initial prompt and defining function for refreshing the prompt using a button
 
@@ -28,9 +29,9 @@ const Test = () => {
     generateNewTest();
   }, [wordsArray]);
 
-
   const generateNewTest = () => {  //returns a new set of Letters
     setCaretPosition(0)
+    setGotCorrect([])
   
     if (textFileLength === 0) {
       // console.log("wordsArray is empty")
@@ -45,18 +46,18 @@ const Test = () => {
     }
 
     const splitToLetters = selectedWords.map(word => word.split(''))  //splits each word into a seperate array of letters
+    const SplitToLettersWithSpaces = splitToLetters.map(subArray => [...subArray, ' '])
 
-    for (let i = 0; i < selectedWordCount - 1; i++) {
-      splitToLetters[i].push("_")
-    }
+    setLettersArray(SplitToLettersWithSpaces.flat())  //converts nested array of words as letters into a single array of letters
+    console.log(lettersArray + "2")
 
-    setLettersArray(splitToLetters.flat())  //converts nested array of words as letters into a single array of letters
+    setTypeareaHovered(true)
   }
 
   const keyPressed = (event: any) => {
     const letterToCompareTo = lettersArray[caretPosition]
     const newGotCorrect = [...gotCorrect]
-  
+    
     if (event.key === letterToCompareTo) {
       newGotCorrect[caretPosition] = true
     } else {
@@ -80,9 +81,13 @@ const Test = () => {
           onKeyDown={keyPressed}
         >
           {lettersArray.map((letter, index) => (
-            <div key={index} className="relative">
-              {letter}
-              {index === caretPosition && typeareaHovered &&(
+            <div key={index} className={`relative ${gotCorrect[index] ? 'text-green-700': 'text-red-600'}`}>
+              {letter === " " ? (
+                <div key={index}>&nbsp;</div>
+              ) : (
+                letter
+              )}
+              {index === caretPosition && typeareaHovered && (
                 <div className="absolute left-0 w-1 h-7 bg-black top-2 blink"></div>
               )}
             </div>
