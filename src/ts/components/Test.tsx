@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import '../../index.css'
 
 const Test = () => {
@@ -59,12 +59,18 @@ const Test = () => {
     
     if (event.key === letterToCompareTo) {
       newGotCorrect[caretPosition] = true
+      setCaretPosition(pos => pos + 1)
+    } else if (event.key === 'Backspace') {
+      if (caretPosition != 0) {
+        setCaretPosition(pos => pos - 1)
+        console.log("caret position:" + caretPosition)
+      }
     } else {
       newGotCorrect[caretPosition] = false
+      setCaretPosition(pos => pos + 1)
     }
   
     setGotCorrect(newGotCorrect)
-    setCaretPosition(pos => pos + 1)
     console.log(caretPosition)
 
   }
