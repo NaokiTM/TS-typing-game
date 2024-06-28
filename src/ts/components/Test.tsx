@@ -4,10 +4,11 @@ import '../../index.css'
 const Test = () => {
 
   const [wordsArray, setWordsArray] = useState<string[]>([])
-  const [testString, setTestString] = useState<string>()
+  const [lettersArray, setLettersArray] =  useState<string[]>([])
   const selectedWordCount = 30;
   const textFileLength = wordsArray.length
   const [typeareaHovered, setTypeareaHovered] = useState(false);
+  const [caretPosition, setCaretPosition] = useState(0)
 
   //generating a initial prompt and defining function for refreshing the prompt using a button
 
@@ -17,8 +18,6 @@ const Test = () => {
       response.text())
     .then((text) => {
       setWordsArray(text.split(/\s+/)); // Split words file by whitespace
-      const initialTestString = generateNewTest();
-      setTestString(initialTestString);
     })
     .catch((error) => console.error('Error fetching the text file:', error));
   }, [])
@@ -29,10 +28,10 @@ const Test = () => {
   }, [wordsArray]);
 
 
-  const generateNewTest = () => {
+  const generateNewTest = () => {  //returns a new set of Letters
   
     if (textFileLength === 0) {
-      console.log("wordsArray is empty")
+      // console.log("wordsArray is empty")
       return;
     }
 
@@ -43,28 +42,38 @@ const Test = () => {
       selectedWords.push(wordsArray[index])
     }
 
-    setTestString(selectedWords.join(" "))
-    return testString
+    const splitToLetters = selectedWords.map(word => word.split(''))  //splits each word into a seperate array of letters
+
+    for (let i = 0; i < selectedWordCount - 1; i++) {
+      splitToLetters[i].push("_")
+    }
+
+    setLettersArray(splitToLetters.flat())  //converts nested array of words as letters into a single array of letters
+  }
+
+  const startTest = () => {
+
+
   }
 
   //when user selects get user input to see how many characters they have typed, make all typed characters appear red
 
-  let carat = null;
-
-  if (typeareaHovered) {
-    carat = (
-      <div className='absolute left-0 w-1 h-7 bg-black top-2 blink'></div>
-    )
-  }
-
   return (
     <div className='bg-green-300 text-green-700 flex flex-col items-center justify-center h-[75vh] space-y-4'>
-        <div className='w-1/2 pb-8 relative' 
+        <div className='w-1/2 pb-8 relative flex flex-row flex-wrap' 
           tabIndex={0}
           onFocus={() => setTypeareaHovered(true)} 
-          onBlur={() => setTypeareaHovered(false)}>
-          { testString }
-          { carat }
+          onBlur={() => setTypeareaHovered(false)}
+          onKeyDown={startTest}
+        >
+          {lettersArray.map((letter, index) => (
+            <div key={index} className="">
+              {letter}
+              {index === caretPosition && typeareaHovered &&(
+              <div className="absolute left-0 w-1 h-7 bg-black top-2 blink"></div>
+              )}
+            </div>
+          ))}
         </div>
         <button onClick = {generateNewTest} className='border-6'>refresh the test</button>
     </div> 
