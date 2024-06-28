@@ -45,12 +45,11 @@ const Test = () => {
       selectedWords.push(wordsArray[index])
     }
 
-    const splitToLetters = selectedWords.map(word => word.split(''))  //splits each word into a seperate array of letters
-    const SplitToLettersWithSpaces = splitToLetters.map(subArray => [...subArray, ' '])
+    const splitToWords = selectedWords.map(word => word.split(''))  //splits each word into a seperate array of letters
+    const addSpaces = splitToWords.map(subArray => [...subArray, ' '])
+    const splitToLetters = addSpaces!.flat()
 
-    setLettersArray(SplitToLettersWithSpaces.flat())  //converts nested array of words as letters into a single array of letters
-    console.log(lettersArray + "2")
-
+    setLettersArray(splitToLetters.slice(0, splitToLetters.length - 1))
     setTypeareaHovered(true)
   }
 
