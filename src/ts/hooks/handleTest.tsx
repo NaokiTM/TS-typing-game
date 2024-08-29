@@ -46,6 +46,7 @@ const handleTest = (wordsArray: string[], selectedWordCount: number) => {
             // (further logic needed to reset result of the letter being typed)
             if (caretPosition !== 0) {
                 setCaretPosition(pos => pos - 1);
+                newLetterStatus[caretPosition - 1] = 'neutral'
             }
         } else {
             //input doesn't match correct letter; input counted as wrong, caret position incremented
