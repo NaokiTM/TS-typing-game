@@ -10,4 +10,8 @@
 .blink {
 animation: blink 1s step-end infinite;
 }
+
+div:focus {
+    outline: none; /* Removes the default focus outline */
+}
   

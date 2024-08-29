@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import '../../index.css'
 
 const Test = () => {
@@ -10,7 +10,7 @@ const Test = () => {
   const [typeareaHovered, setTypeareaHovered] = useState(true);
   let [caretPosition, setCaretPosition] = useState(0)
   const [gotCorrect, setGotCorrect] = useState<boolean[]>([])
-
+  const typeAreaRef = useRef<HTMLDivElement>(null); 
 
   //generating a initial prompt and defining function for refreshing the prompt using a button
 
@@ -24,10 +24,15 @@ const Test = () => {
     .catch((error) => console.error('Error fetching the text file:', error));
   }, [])
 
-
   useEffect(() => {
     generateNewTest();
   }, [wordsArray]);
+
+  useEffect(() => {
+    if (typeAreaRef.current) {
+      typeAreaRef.current.focus();  // focus when component mounts
+    }
+  }, [lettersArray]);  //only after lettersArray has been set, meaning the blank words are already generated
 
   const generateNewTest = () => {  //returns a new set of Letters
     setCaretPosition(0)
@@ -81,6 +86,7 @@ const Test = () => {
     <div className='bg-green-300 text-green-700 flex flex-col items-center justify-center h-[75vh] space-y-4'>
         <div className='w-1/2 pb-8 relative flex flex-row flex-wrap' 
           tabIndex={0}
+          ref={typeAreaRef}  // Attach ref to typing area
           onFocus={() => setTypeareaHovered(true)} 
           onBlur={() => setTypeareaHovered(false)}
           onKeyDown={keyPressed}
