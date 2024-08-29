@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import fetchWords from '../hooks/fetchWords';
-import useGenerateNewTest from '../hooks/newTest';
+import handleTest from '../hooks/handleTest';
 import '../../index.css'
 
 const Test = () => {
@@ -10,7 +10,7 @@ const Test = () => {
   const typeAreaRef = useRef<HTMLDivElement>(null); 
 
   //object destructuring returned from newTest hook
-  const { lettersArray, caretPosition, letterStatus, generateNewTest, keyPressed } = useGenerateNewTest(wordsArray, selectedWordCount);
+  const { lettersArray, caretPosition, letterStatus, generateNewTest, keyPressed } = handleTest(wordsArray, selectedWordCount);
 
   //focus typing area when component mounts
   useEffect(() => {

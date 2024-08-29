@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-const useGenerateNewTest = (wordsArray: string[], selectedWordCount: number) => {
+const handleTest = (wordsArray: string[], selectedWordCount: number) => {
     const [lettersArray, setLettersArray] = useState<string[]>([]);
     const [caretPosition, setCaretPosition] = useState(0);
     const [letterStatus, setLetterStatus] = useState<string[]>([]);
@@ -66,4 +66,4 @@ const useGenerateNewTest = (wordsArray: string[], selectedWordCount: number) => 
     };
 }
 
-export default useGenerateNewTest
+export default handleTest
