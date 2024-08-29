@@ -10,7 +10,7 @@ const Test = () => {
   const typeAreaRef = useRef<HTMLDivElement>(null); 
 
   //object destructuring returned from newTest hook
-  const { lettersArray, caretPosition, gotCorrect, generateNewTest, keyPressed } = useGenerateNewTest(wordsArray, selectedWordCount);
+  const { lettersArray, caretPosition, letterStatus, generateNewTest, keyPressed } = useGenerateNewTest(wordsArray, selectedWordCount);
 
   //focus typing area when component mounts
   useEffect(() => {
@@ -20,7 +20,7 @@ const Test = () => {
   }, [lettersArray]);
 
   return (
-    <div className='bg-green-300 text-green-700 flex flex-col items-center justify-center h-[75vh] space-y-4'>
+    <div className='bg-green-300 text-stone-900 flex flex-col items-center justify-center h-[75vh] space-y-4'>
         <div className='w-1/2 pb-8 relative flex flex-row flex-wrap' 
           tabIndex={0}
           ref={typeAreaRef}  // Attach ref to typing area
@@ -29,7 +29,12 @@ const Test = () => {
           onKeyDown={keyPressed}
         >
           {lettersArray.map((letter, index) => (  //maps letters/words, caret and whitespace into the typing area
-            <div key={index} className={`relative ${gotCorrect[index] ? 'text-green-700': 'text-red-600'}`}>
+            <div key={index} className={`relative ${
+            letterStatus[index] === 'neutral' ? 'text-stone-900' :
+            letterStatus[index] === 'correct' ? 'text-green-500' :
+            letterStatus[index] === 'incorrect' ? 'text-red-600' :
+            ''
+          }`}>
               {letter === " " ? (
                 <div key={index}>&nbsp;</div>
               ) : (

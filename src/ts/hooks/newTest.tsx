@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 const useGenerateNewTest = (wordsArray: string[], selectedWordCount: number) => {
     const [lettersArray, setLettersArray] = useState<string[]>([]);
     const [caretPosition, setCaretPosition] = useState(0);
-    const [gotCorrect, setGotCorrect] = useState<boolean[]>([]);
+    const [letterStatus, setLetterStatus] = useState<string[]>([]);
     const textFileLength = wordsArray.length;
 
     //generateNewTest doesn't run if no words available
@@ -15,7 +15,7 @@ const useGenerateNewTest = (wordsArray: string[], selectedWordCount: number) => 
 
     const generateNewTest = () => {
         setCaretPosition(0);
-        setGotCorrect([]);
+        setLetterStatus([]);
 
         //counts and selects the number of words needed
         const selectedWords = [];
@@ -35,11 +35,11 @@ const useGenerateNewTest = (wordsArray: string[], selectedWordCount: number) => 
         const letterToCompareTo = lettersArray[caretPosition];
 
         //copy of gotCorrect used to modify the number of correct inputs
-        const newGotCorrect = [...gotCorrect];
+        const newLetterStatus = [...letterStatus];
     
         if (event.key === letterToCompareTo) {
             //input matches correct letter, updates caret position
-            newGotCorrect[caretPosition] = true;
+            newLetterStatus[caretPosition] = 'correct';
             setCaretPosition(pos => pos + 1);
         } else if (event.key === 'Backspace') {
             //caret position decremented if not already at the start
@@ -49,18 +49,18 @@ const useGenerateNewTest = (wordsArray: string[], selectedWordCount: number) => 
             }
         } else {
             //input doesn't match correct letter; input counted as wrong, caret position incremented
-            newGotCorrect[caretPosition] = false;
+            newLetterStatus[caretPosition] = 'incorrect';
             setCaretPosition(pos => pos + 1);
         }
 
         //merges the copy array contents into the original
-        setGotCorrect(newGotCorrect); 
+        setLetterStatus(newLetterStatus); 
     };
 
     return {
         lettersArray,
         caretPosition,
-        gotCorrect,
+        letterStatus,
         generateNewTest,
         keyPressed,
     };
