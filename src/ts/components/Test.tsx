@@ -9,17 +9,15 @@ const Test = () => {
   const [typeareaHovered, setTypeareaHovered] = useState(true);
   const typeAreaRef = useRef<HTMLDivElement>(null); 
 
+  //object destructuring returned from newTest hook
   const { lettersArray, caretPosition, gotCorrect, generateNewTest, keyPressed } = useGenerateNewTest(wordsArray, selectedWordCount);
 
-  //generating a initial prompt and defining function for refreshing the prompt using a button
-
+  //focus typing area when component mounts
   useEffect(() => {
     if (typeAreaRef.current) {
-      typeAreaRef.current.focus();  // focus when component mounts
+      typeAreaRef.current.focus();
     }
-  }, [lettersArray]);  //only after lettersArray has been set, meaning the blank words are already generated
-
-  //when user selects get user input to see how many characters they have typed, make all typed characters appear red
+  }, [lettersArray]);
 
   return (
     <div className='bg-green-300 text-green-700 flex flex-col items-center justify-center h-[75vh] space-y-4'>
@@ -30,7 +28,7 @@ const Test = () => {
           onBlur={() => setTypeareaHovered(false)}
           onKeyDown={keyPressed}
         >
-          {lettersArray.map((letter, index) => (
+          {lettersArray.map((letter, index) => (  //maps letters/words, caret and whitespace into the typing area
             <div key={index} className={`relative ${gotCorrect[index] ? 'text-green-700': 'text-red-600'}`}>
               {letter === " " ? (
                 <div key={index}>&nbsp;</div>

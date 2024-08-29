@@ -7,7 +7,8 @@ export const fetchWords = () => {
       fetch('../../../words.txt')
         .then((response) => response.text())
         .then((text) => {
-          setWordsArray(text.split(/\s+/)); // Split words file by whitespace
+        // Split words file by whitespace
+          setWordsArray(text.split(/\s+/));
         })
         .catch((error) => console.error('Error fetching the text file:', error));
     }, []);
