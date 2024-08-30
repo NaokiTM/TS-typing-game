@@ -4,6 +4,7 @@ const handleTest = (wordsArray: string[], selectedWordCount: number) => {
     const [lettersArray, setLettersArray] = useState<string[]>([]);
     const [caretPosition, setCaretPosition] = useState(0);
     const [letterStatus, setLetterStatus] = useState<string[]>([]);
+    const [score, setScore] = useState<string>()
     const textFileLength = wordsArray.length;
 
     //generateNewTest doesn't run if no words available
@@ -16,6 +17,7 @@ const handleTest = (wordsArray: string[], selectedWordCount: number) => {
     const generateNewTest = () => {
         setCaretPosition(0);
         setLetterStatus([]);
+        setScore('');
 
         //counts and selects the number of words needed
         const selectedWords = [];
@@ -34,7 +36,10 @@ const handleTest = (wordsArray: string[], selectedWordCount: number) => {
     const keyPressed = (event: any) => {
         const letterToCompareTo = lettersArray[caretPosition];
 
-        //copy of gotCorrect used to modify the number of correct inputs
+        if (caretPosition == lettersArray.length) {
+            calculateScore()
+        }
+        //copy of letterStatus used to modify the number of correct inputs
         const newLetterStatus = [...letterStatus];
     
         if (event.key === letterToCompareTo) {
@@ -58,12 +63,19 @@ const handleTest = (wordsArray: string[], selectedWordCount: number) => {
         setLetterStatus(newLetterStatus); 
     };
 
+    const calculateScore = () => {
+      //only counts correct letters
+        const gotCorrect = letterStatus.filter(status => status === 'correct').length; 
+        setScore(`Your score was ${gotCorrect} characters correct out of ${lettersArray.length}`);
+    };
+
     return {
         lettersArray,
         caretPosition,
         letterStatus,
         generateNewTest,
         keyPressed,
+        score
     };
 }
 

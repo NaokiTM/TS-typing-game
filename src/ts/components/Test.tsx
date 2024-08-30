@@ -10,7 +10,7 @@ const Test = () => {
   const typeAreaRef = useRef<HTMLDivElement>(null); 
 
   //object destructuring returned from newTest hook
-  const { lettersArray, caretPosition, letterStatus, generateNewTest, keyPressed } = handleTest(wordsArray, selectedWordCount);
+  const { lettersArray, caretPosition, letterStatus, generateNewTest, keyPressed, score } = handleTest(wordsArray, selectedWordCount);
 
   //focus typing area when component mounts
   useEffect(() => {
@@ -47,6 +47,7 @@ const Test = () => {
           ))}
         </div>
         <button onClick = {generateNewTest} className='border-6'>refresh the test</button>
+        <div>{score}</div>
     </div> 
   )
 }
