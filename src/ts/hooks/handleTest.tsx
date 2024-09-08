@@ -24,6 +24,7 @@ const handleTest = (wordsArray: string[], selectedWordCount: number) => {
         setLetterStatus([]);
         setScore('');
         setWpm('')
+        setFirstKeyDown(false);
 
         //counts and selects the number of words needed
         const selectedWords = [];
@@ -79,8 +80,8 @@ const handleTest = (wordsArray: string[], selectedWordCount: number) => {
 
     const calculateScore = () => {
         // WPM
-        const minutes = seconds % 60
-        setWpm(selectedWordCount / minutes + "WPM")
+        const minutes = seconds / 60;
+        setWpm(Math.round(selectedWordCount / minutes) + " WPM");
 
         //only counts correct letters
         const gotCorrect = letterStatus.filter(status => status === 'correct').length; 
