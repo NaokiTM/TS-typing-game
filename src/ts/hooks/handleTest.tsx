@@ -4,6 +4,7 @@ import Timer from './Timer';
 const handleTest = (wordsArray: string[], selectedWordCount: number) => {
     const { seconds, resetTimer ,startTimer, stopTimer} = Timer()
 
+    const [firstKeyDown, setFirstKeyDown] = useState<boolean>();
     const [lettersArray, setLettersArray] = useState<string[]>([]);
     const [caretPosition, setCaretPosition] = useState(0);
     const [letterStatus, setLetterStatus] = useState<string[]>([]);
@@ -39,7 +40,6 @@ const handleTest = (wordsArray: string[], selectedWordCount: number) => {
     }
 
     const keyPressed = (event: any) => {
-        const [firstKeyDown, setFirstKeyDown] = useState<boolean>();
         const letterToCompareTo = lettersArray[caretPosition];
         const newLetterStatus = [...letterStatus]; // copy of letterStatus used to change the total number of correct inputs
 
