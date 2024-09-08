@@ -3,14 +3,14 @@ import fetchWords from '../hooks/fetchWords';
 import handleTest from '../hooks/handleTest';
 import '../../index.css'
 
-const Test = () => {
+const Test: React.FC = () => {
   const wordsArray = fetchWords();
   const selectedWordCount = 30;
   const [typeareaHovered, setTypeareaHovered] = useState(true);
   const typeAreaRef = useRef<HTMLDivElement>(null); 
 
   //object destructuring returned from newTest hook
-  const { lettersArray, caretPosition, letterStatus, generateNewTest, keyPressed, score } = handleTest(wordsArray, selectedWordCount);
+  const { lettersArray, caretPosition, letterStatus, generateNewTest, keyPressed, score, wpm} = handleTest(wordsArray, selectedWordCount);
 
   //focus typing area when component mounts
   useEffect(() => {
@@ -48,6 +48,7 @@ const Test = () => {
         </div>
         <button onClick = {generateNewTest} className='border-6'>refresh the test</button>
         <div>{score}</div>
+        <div>{wpm}</div>
     </div> 
   )
 }

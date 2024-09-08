@@ -1,10 +1,14 @@
 import { useState, useEffect } from 'react';
+import Timer from './Timer';
 
 const handleTest = (wordsArray: string[], selectedWordCount: number) => {
+    const { seconds, resetTimer ,startTimer, stopTimer} = Timer()
+
     const [lettersArray, setLettersArray] = useState<string[]>([]);
     const [caretPosition, setCaretPosition] = useState(0);
     const [letterStatus, setLetterStatus] = useState<string[]>([]);
     const [score, setScore] = useState<string>()
+    const [wpm, setWpm] = useState<string>()
     const textFileLength = wordsArray.length;
 
     //generateNewTest doesn't run if no words available
@@ -18,6 +22,7 @@ const handleTest = (wordsArray: string[], selectedWordCount: number) => {
         setCaretPosition(0);
         setLetterStatus([]);
         setScore('');
+        setWpm('')
 
         //counts and selects the number of words needed
         const selectedWords = [];
@@ -34,13 +39,22 @@ const handleTest = (wordsArray: string[], selectedWordCount: number) => {
     }
 
     const keyPressed = (event: any) => {
+        const [firstKeyDown, setFirstKeyDown] = useState<boolean>();
         const letterToCompareTo = lettersArray[caretPosition];
+        const newLetterStatus = [...letterStatus]; // copy of letterStatus used to change the total number of correct inputs
 
-        if (caretPosition == lettersArray.length) {
-            calculateScore()
+        //if keys haven't been pressed yet, then when the first key goes down the timer starts 
+        if (!firstKeyDown) {
+            setFirstKeyDown(true)
+            startTimer()
         }
-        //copy of letterStatus used to modify the number of correct inputs
-        const newLetterStatus = [...letterStatus];
+
+        //end of test
+        if (caretPosition == lettersArray.length) {
+            stopTimer()
+            calculateScore()
+            resetTimer()
+        }
     
         if (event.key === letterToCompareTo) {
             //input matches correct letter, updates caret position
@@ -64,7 +78,11 @@ const handleTest = (wordsArray: string[], selectedWordCount: number) => {
     };
 
     const calculateScore = () => {
-      //only counts correct letters
+        // WPM
+        const minutes = seconds % 60
+        setWpm(selectedWordCount / minutes + "WPM")
+
+        //only counts correct letters
         const gotCorrect = letterStatus.filter(status => status === 'correct').length; 
         setScore(`Your score was ${gotCorrect} characters correct out of ${lettersArray.length}`);
     };
@@ -75,7 +93,8 @@ const handleTest = (wordsArray: string[], selectedWordCount: number) => {
         letterStatus,
         generateNewTest,
         keyPressed,
-        score
+        score, 
+        wpm
     };
 }
 

@@ -1,4 +1,4 @@
-export default function Options() {
+const Options: React.FC = () => {
 
   return (
     <div className="'bg-green-300 text-green-700 flex items-center h-[10vh]">
@@ -7,3 +7,5 @@ export default function Options() {
     </div>
   )
 }
+
+export default Options

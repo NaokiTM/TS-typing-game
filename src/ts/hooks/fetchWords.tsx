@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-export const fetchWords = () => {
+const fetchWords = () => {
     const [wordsArray, setWordsArray] = useState<string[]>([]);
 
     useEffect(() => {
