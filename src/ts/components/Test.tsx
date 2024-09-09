@@ -22,7 +22,7 @@ const Test: React.FC = () => {
   }, [lettersArray]);
 
   return (
-    <div className='bg-green-300 text-stone-900 flex flex-col items-center justify-center h-[75vh] space-y-4'>
+    <div className='bg-neutral-800 text-neutral-500 flex flex-col items-center justify-center h-[75vh] space-y-4'>
         <div className='w-1/2 pb-8 relative flex flex-row flex-wrap' 
           tabIndex={0}
           ref={typeAreaRef}  // Attach ref to typing area
@@ -32,8 +32,8 @@ const Test: React.FC = () => {
         >
           {lettersArray.map((letter, index) => (  //maps letters/words, caret and whitespace into the typing area
             <div key={index} className={`relative ${
-            letterStatus[index] === 'neutral' ? 'text-stone-900' :
-            letterStatus[index] === 'correct' ? 'text-green-500' :
+            letterStatus[index] === 'neutral' ? 'text-neutral-500' :
+            letterStatus[index] === 'correct' ? 'text-white' :
             letterStatus[index] === 'incorrect' ? 'text-red-600' :
             ''
           }`}>
@@ -43,7 +43,7 @@ const Test: React.FC = () => {
                 letter
               )}
               {index === caretPosition && typeareaHovered && (
-                <div className="absolute left-0 w-1 h-7 bg-black top-2 blink"></div>
+                <div className="absolute left-0 w-1 h-7 bg-indigo-600 top-2 blink"></div>
               )}
             </div>
           ))}
