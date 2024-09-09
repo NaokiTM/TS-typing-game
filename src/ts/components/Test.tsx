@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef } from 'react';
+import { BiRefresh } from "react-icons/bi";
 import fetchWords from '../hooks/fetchWords';
 import handleTest from '../hooks/handleTest';
+
 import '../../index.css'
 
 const Test: React.FC = () => {
@@ -46,7 +48,7 @@ const Test: React.FC = () => {
             </div>
           ))}
         </div>
-        <button onClick = {generateNewTest} className='border-6'>refresh the test</button>
+        <button onClick = {generateNewTest} className='border-6 text-4xl'><BiRefresh /></button>
         <div>{score}</div>
         <div>{wpm}</div>
     </div> 
