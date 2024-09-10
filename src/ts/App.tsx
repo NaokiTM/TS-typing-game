@@ -1,6 +1,5 @@
 import Title from './components/Title'
 import Test from './components/Test'
-import Options from '../ts/components/Options'
 import Gradient from '../ts/components/Gradient'
 import "../index.css"
 
@@ -12,7 +11,6 @@ function App() {
         <Title />
         <Gradient />
         <Test />
-        <Options />
       </div>
     </>
   )
