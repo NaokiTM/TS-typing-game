@@ -1,0 +1,32 @@
+{
+    "bluegrey": {
+        "primary": "bg-indigo-600",
+        "secondary": "bg-neutral-800",
+        "gradPrimary": "from-indigo-600",
+        "gradSecondary": "to-neutral-800",
+        "correct": "text-white",
+        "incorrect": "text-red-600",
+        "neutral": "text-neutral-500",
+        "navText": "text-white"
+    },
+    "whitegreen": {
+        "primary": "bg-emerald-600",
+        "secondary": "bg-neutral-800",
+        "gradPrimary": "from-emerald-600",
+        "gradSecondary": "to-neutral-800",
+        "correct": "text-white",
+        "incorrect": "text-red-600",
+        "neutral": "text-neutral-500",
+        "navText": "text-white"
+    },
+    "redblack": {
+        "primary": "bg-red-600",
+        "secondary": "bg-black",
+        "gradPrimary": "from-red-600",
+        "gradSecondary": "to-black",
+        "correct": "text-white",
+        "incorrect": "text-red-600",
+        "neutral": "text-neutral-500",
+        "navText": "text-white"
+    }
+}

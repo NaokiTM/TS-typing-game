@@ -1,11 +1,14 @@
 import { useState, useEffect, useRef } from 'react';
 import { BiRefresh } from "react-icons/bi";
+import useChangeTheme from '../hooks/useChangeTheme';
 import fetchWords from '../hooks/fetchWords';
 import handleTest from '../hooks/handleTest';
 
 import '../../index.css'
 
 const Test: React.FC = () => {
+  const { theme } = useChangeTheme()
+
   const wordsArray = fetchWords();
   const selectedWordCount = 30;
   const [typeareaHovered, setTypeareaHovered] = useState(true);
@@ -22,7 +25,7 @@ const Test: React.FC = () => {
   }, [lettersArray]);
 
   return (
-    <div className='bg-neutral-800 text-neutral-500 flex flex-col items-center justify-center h-[75vh] space-y-4'>
+    <div className={`${theme.secondary} ${theme.neutral} flex flex-col items-center justify-center h-[75vh] space-y-4`}>
         <div className='w-1/2 pb-8 relative flex flex-row flex-wrap' 
           tabIndex={0}
           ref={typeAreaRef}  // Attach ref to typing area
@@ -32,9 +35,9 @@ const Test: React.FC = () => {
         >
           {lettersArray.map((letter, index) => (  //maps letters/words, caret and whitespace into the typing area
             <div key={index} className={`relative ${
-            letterStatus[index] === 'neutral' ? 'text-neutral-500' :
-            letterStatus[index] === 'correct' ? 'text-white' :
-            letterStatus[index] === 'incorrect' ? 'text-red-600' :
+            letterStatus[index] === 'neutral' ? `${theme.neutral}` :
+            letterStatus[index] === 'correct' ? `${theme.correct}` :
+            letterStatus[index] === 'incorrect' ? `${theme.incorrect}` :
             ''
           }`}>
               {letter === " " ? (
@@ -43,7 +46,7 @@ const Test: React.FC = () => {
                 letter
               )}
               {index === caretPosition && typeareaHovered && (
-                <div className="absolute left-0 w-1 h-7 bg-indigo-600 top-2 blink"></div>
+                <div className={`absolute left-0 w-1 h-7 ${theme.primary} top-2 blink`}></div>
               )}
             </div>
           ))}
