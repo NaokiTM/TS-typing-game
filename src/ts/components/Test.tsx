@@ -46,7 +46,7 @@ const Test: React.FC = () => {
                 letter
               )}
               {index === caretPosition && typeareaHovered && (
-                <div className={`absolute left-0 w-1 h-7 ${theme.primary} top-2 blink`}></div>
+                <div className={`absolute left-0 w-[3px] h-7 rounded-xl ${theme.primary} top-2 blink`}></div>
               )}
             </div>
           ))}
