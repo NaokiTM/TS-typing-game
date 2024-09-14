@@ -51,7 +51,8 @@ const Test: React.FC = () => {
             </div>
           ))}
         </div>
-        <button onClick = {generateNewTest} className='border-6 text-4xl'><BiRefresh /></button>
+        <button onClick = {generateNewTest} id = "refreshButton" className='border-6 text-4xl'><BiRefresh /></button>
+        <div className='text-sm'>Tab + enter to refresh test</div>
         <div>{score}</div>
         <div>{wpm}</div>
     </div> 

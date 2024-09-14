@@ -14,6 +14,11 @@ animation: blink 1s step-end infinite;
 div:focus {
     outline: none; /* Removes the default focus outline */
 }
+
+button:focus {
+    outline: 2px solid white;
+    border-radius: 10px;
+}
   
 .dropdown-tail {
     width: 130px;

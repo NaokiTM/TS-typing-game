@@ -1,5 +1,6 @@
 import useChangeTheme  from "../hooks/useChangeTheme"
 import themes from '../../themes.json'
+import '../../index.css'
 
 const Navbar: React.FC= () => {
   const { theme, changeTheme } = useChangeTheme();
@@ -10,7 +11,7 @@ const Navbar: React.FC= () => {
       <div className="text-4xl flex flex-row">
 
         <div className="relative group">
-          <button className="p-8">Themes</button>
+          <button id='themesButton' className="p-8">Themes</button>
           <div className="absolute hidden group-hover:block bg-white text-black text-xl mt-2 rounded shadow-lg z-10">
             <ul className="py-2">
               <li className="px-4 py-2 hover:bg-gray-200">
@@ -28,7 +29,7 @@ const Navbar: React.FC= () => {
             </div>
           </div>
         </div>
-        <button className="p-8">Settings</button>
+        <button id="settingsButton" className="p-8">Settings</button>
 
       </div>
     </div>
