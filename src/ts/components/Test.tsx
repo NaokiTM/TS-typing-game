@@ -26,7 +26,7 @@ const Test: React.FC = () => {
 
   return (
     <div className={`${theme.secondary} ${theme.neutral} flex flex-col items-center justify-center h-[75vh] space-y-4`}>
-        <div className='w-[90%] pb-8 relative flex flex-row flex-wrap' 
+        <div className='w-[90%] pb-8 h-[40vh] overflow-hidden relative flex flex-row flex-wrap' 
           tabIndex={0}
           ref={typeAreaRef}  // Attach ref to typing area
           onFocus={() => setTypeareaHovered(true)} 
