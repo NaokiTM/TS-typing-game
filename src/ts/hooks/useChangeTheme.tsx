@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 const useChangeTheme = () => {
   // State to hold the current theme class names

@@ -11,12 +11,12 @@
     },
     "whitegreen": {
         "primary": "bg-emerald-600",
-        "secondary": "bg-neutral-800",
+        "secondary": "bg-neutral-100",
         "gradPrimary": "from-emerald-600",
-        "gradSecondary": "to-neutral-800",
-        "correct": "text-white",
+        "gradSecondary": "to-neutral-100",
+        "correct": "text-black",
         "incorrect": "text-red-600",
-        "neutral": "text-neutral-500",
+        "neutral": "text-neutral-700",
         "navText": "text-white"
     },
     "redblack": {
