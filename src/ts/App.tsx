@@ -7,7 +7,7 @@ import "../index.css"
 function App() {
   return (
     <>
-      <div className='font-mono text-2xl leading-loose'>
+      <div className='font-mono text-3xl leading-loose'>
         <Navbar />
         <Gradient />
         <Test />
