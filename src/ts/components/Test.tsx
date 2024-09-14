@@ -3,6 +3,7 @@ import { BiRefresh } from "react-icons/bi";
 import useChangeTheme from '../hooks/useChangeTheme';
 import fetchWords from '../hooks/fetchWords';
 import handleTest from '../hooks/handleTest';
+import useCaretAutoScroll from '../hooks/useCaretAutoScroll';
 
 import '../../index.css'
 
@@ -10,7 +11,7 @@ const Test: React.FC = () => {
   const { theme } = useChangeTheme()
 
   const wordsArray = fetchWords();
-  const selectedWordCount = 30;
+  const selectedWordCount = 120;
   const [typeareaHovered, setTypeareaHovered] = useState(true);
   const typeAreaRef = useRef<HTMLDivElement>(null); 
 
