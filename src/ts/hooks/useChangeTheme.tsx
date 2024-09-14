@@ -8,7 +8,7 @@ const useChangeTheme = () => {
     gradPrimary: 'from-indigo-600',
     gradSecondary: 'to-neutral-800',
     correct: 'text-white', // Default value
-    incorrect: 'text-red-600', // Default value
+    incorrect: 'text-red-600 underline', // Default value
     neutral: 'text-neutral-500',  // Default value
     navText: 'text-white'
   });
