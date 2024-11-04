@@ -29,7 +29,32 @@ const Navbar: React.FC= () => {
             </div>
           </div>
         </div>
-        <button id="settingsButton" className="p-8">Settings</button>
+
+
+        <div className="relative group">
+          <button id='settingsButton' className="p-8">Settings</button>
+          <div className="absolute hidden group-hover:block bg-white text-black text-xl mt-2 rounded shadow-lg z-10">
+            <ul className="py-2">
+              <li className="px-4 py-2 hover:bg-gray-200">
+                <button onClick={() => changeTheme(themes.bluegrey)}>settings1</button>
+              </li>
+              <li className="px-4 py-2 hover:bg-gray-200">
+                <button onClick={() => changeTheme(themes.whitegreen)}>settings2</button>
+              </li>
+              <li className="px-4 py-2 hover:bg-gray-200">
+                <button onClick={() => changeTheme(themes.redblack)}>settings3 </button>
+              </li>
+            </ul>
+            <div className="absolute left-1/2 -translate-x-1/2 -top-2 -z-10">
+              <div className="dropdown-tail"></div>
+            </div>
+          </div>
+        </div>
+
+
+
+
+        
 
       </div>
     </div>
